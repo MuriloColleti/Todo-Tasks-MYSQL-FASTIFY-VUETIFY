@@ -1,3 +1,4 @@
+import { prioridadesCrontroller } from '../controllers/prioridades.controller.js';
 import { statusCrontroller } from '../controllers/statues.controller.js';
 import { taskController } from '../controllers/task.controller.js';
 import { authMiddleware } from '../middleware/auth.user.middleware.js';
@@ -10,6 +11,7 @@ export default async function taskRoutes(fastify, options) {
   fastify.delete('/:id', { preHandler: [authMiddleware] }, taskController.delete);
 
   fastify.get('/statuses', { preHandler: [authMiddleware] }, statusCrontroller.getAll);
+  fastify.get('/priorities', { preHandler: [authMiddleware] }, prioridadesCrontroller.getAll);
 
   fastify.get('/user/:id_user', { preHandler: [authMiddleware] }, taskController.getTasksByUser);
 }

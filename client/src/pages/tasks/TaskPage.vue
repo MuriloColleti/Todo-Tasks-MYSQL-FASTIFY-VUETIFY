@@ -19,6 +19,9 @@
                 <v-chip>
                   {{ card.status_title }}
                 </v-chip>
+                <v-chip>
+                  {{ card.prioridade_title }}
+                </v-chip>
                 <div>
                   <v-btn icon size="small" @click.stop="showDialog(card)">
                     <v-icon>mdi-pencil</v-icon>
@@ -58,6 +61,7 @@ import { jwtDecode } from 'jwt-decode'
 const cardsDialogRef = ref(null)
 const cards = ref([])
 const statues = ref([])
+const priorities = ref([])
 
 const users = ref([])
 
@@ -74,8 +78,21 @@ async function onSubmit(data) {
   console.log('submit data:', data)
 
   data.id_task
-    ? await taskQueries.editTask(data.id_task, data.title, data.body, data.id_status, data.id_users)
-    : await taskQueries.createTask(data.title, data.body, data.id_status, data.id_users)
+    ? await taskQueries.editTask(
+        data.id_task,
+        data.title,
+        data.body,
+        data.id_status,
+        data.id_users,
+        data.id_priority,
+      )
+    : await taskQueries.createTask(
+        data.title,
+        data.body,
+        data.id_status,
+        data.id_users,
+        data.id_priority,
+      )
 
   hideDialog()
 
@@ -94,6 +111,9 @@ async function reload() {
   const jwt = localStorage.getItem('token')
 
   const user = jwtDecode(jwt)
+
+  const priority = await taskQueries.getAllpriorities()
+  priorities.value = priority
 
   const status = await taskQueries.getAllStatus()
   statues.value = status

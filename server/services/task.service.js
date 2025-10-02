@@ -2,6 +2,7 @@ import * as tasksQueries from '../queries/tasks.query.js';
 import * as usersTaskQueries from '../queries/users-task.query.js';
 
 const NOT_COMPLET_ID_STATUS = 1;
+const ID_PRIORITY_LOW = 1;
 
 export const taskService = {
   async getAll() {
@@ -21,6 +22,7 @@ export const taskService = {
       title: data.title,
       body: data.body,
       id_status: data.id_status || NOT_COMPLET_ID_STATUS,
+      id_priority: data.id_priority || ID_PRIORITY_LOW,
     });
     const task = await tasksQueries.getByID(taskId);
 
@@ -33,7 +35,9 @@ export const taskService = {
     await tasksQueries.updateById(id_task, {
       title: data.title,
       body: data.body,
-      id_status: data.id_status || NOT_COMPLET_ID_STATUS,
+      id_status: data.id_status ?? NOT_COMPLET_ID_STATUS,
+      id_users: data.id_users || '',
+      id_priority: data.id_priority ?? ID_PRIORITY_LOW,
     });
 
     if (data.id_users) await this.handleTaskUsers(id, data.id_users);

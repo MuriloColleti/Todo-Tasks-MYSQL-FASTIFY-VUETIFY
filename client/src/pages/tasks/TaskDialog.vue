@@ -24,7 +24,20 @@
               label="Selecionar Usuário"
               :return-object="false"
               multiple
-              outlineds
+              outlined
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-select
+              v-model="model.id_priority"
+              :items="priorities"
+              item-title="prioridade"
+              item-value="id_prioridade"
+              label="Selecionar Prioridade"
+              :return-object="false"
+              outlined
             />
           </v-col>
         </v-row>
@@ -38,7 +51,7 @@
               item-value="id_status"
               label="Selecione o Status"
               :return-object="false"
-              outlineds
+              outlined
             />
           </v-col>
         </v-row>
@@ -57,9 +70,17 @@ import taskQuery from '@/queries/task.query'
 import { computed, ref } from 'vue'
 
 const showDialog = ref(false)
-const model = ref({ title: '', body: '', id_task: '', id_status: '', id_users: [] })
+const model = ref({
+  title: '',
+  body: '',
+  id_task: '',
+  id_status: '',
+  id_users: [],
+  id_priority: [],
+})
 const users = ref([])
 const statuses = ref([])
+const priorities = ref([])
 
 const emit = defineEmits(['hide', 'submit'])
 
@@ -69,13 +90,15 @@ async function show(data = {}) {
   model.value = {
     title: data.title || '',
     body: data.body || '',
-    id_status: data.id_status || '',
+    id_status: data.id_status ?? 1,
     id_task: data.id_task ? data.id_task : undefined,
     id_users: data.id_users || [],
+    id_priority: data.id_prioridade || [],
   }
 
   users.value = await usersQuery.getAllUsers()
   statuses.value = await taskQuery.getAllStatus()
+  priorities.value = await taskQuery.getAllpriorities()
 
   showDialog.value = true
 }
@@ -90,12 +113,19 @@ function hide() {
 }
 
 function submit() {
+  console.log(
+    'Enviando status:',
+    model.value.id_status,
+    'Enviado Prioridades',
+    model.value.id_priority,
+  )
   emit('submit', {
     id_task: model.value.id_task,
     title: model.value.title,
     body: model.value.body,
     id_status: model.value.id_status,
     id_users: model.value.id_users,
+    id_priority: model.value.id_priority,
   })
 }
 

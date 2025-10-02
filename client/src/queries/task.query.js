@@ -16,27 +16,27 @@ async function getAllTasks() {
   return await parseJSON(resp)
 }
 
-async function createTask(title, body, id_status, id_users) {
+async function createTask(title, body, id_status, id_users, id_priority) {
   const resp = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ title, body, id_status, id_users }),
+    body: JSON.stringify({ title, body, id_status, id_users, id_priority }),
   })
 
   return await parseJSON(resp)
 }
 
-async function editTask(id_task, title, body) {
+async function editTask(id_task, title, body, id_status, id_users, id_priority) {
   const resp = await fetch(`${url}/${id_task}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ title, body }),
+    body: JSON.stringify({ title, body, id_status, id_users, id_priority }),
   })
 
   return await parseJSON(resp)
@@ -72,4 +72,21 @@ async function getAllStatus() {
   return await parseJSON(resp)
 }
 
-export default { getAllTasks, createTask, editTask, deleteTask, getTaskByUser, getAllStatus }
+async function getAllpriorities() {
+  const resp = await fetch(`${url}/priorities`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+  })
+
+  return await parseJSON(resp)
+}
+
+export default {
+  getAllTasks,
+  createTask,
+  editTask,
+  deleteTask,
+  getTaskByUser,
+  getAllStatus,
+  getAllpriorities,
+}

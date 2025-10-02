@@ -18,6 +18,7 @@ export const taskController = {
       body: req.body.body,
       id_status: req.body.id_status,
       id_users: req.body.id_users,
+      id_priority: req.body.id_priority,
     });
     console.log(newTask);
     return reply.code(201).send(newTask);
@@ -29,6 +30,8 @@ export const taskController = {
       body: req.body.body,
       id_status: req.body.id_status,
       id_task: req.body.id_task,
+      id_user: req.body.id_users,
+      id_priority: req.body.id_priority,
     });
     return updatedTask;
   },

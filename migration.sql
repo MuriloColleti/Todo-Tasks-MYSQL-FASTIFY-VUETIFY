@@ -39,3 +39,11 @@ CREATE TABLE products(
 
 ALTER TABLE tasks MODIFY COLUMN title VARCHAR(255) NOT NULL;
 ALTER TABLE tasks MODIFY COLUMN body VARCHAR(255) NOT NULL;
+
+CREATE TABLE priodidades(
+    id_Prioridade INTEGER NOT NULL AUTO_INCREMENT,
+    prioridade VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id_Prioridade)
+)
+
+ALTER TABLE tasks ADD COLUMN id_Prioridade INTEGER Foreign Key (id_Prioridade) REFERENCES (prioridades);
