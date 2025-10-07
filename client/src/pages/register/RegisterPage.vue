@@ -25,6 +25,7 @@
                 :clearable="true"
                 label="Username"
                 placeholder="Digite seu Username"
+                data-testid="username-input"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -37,6 +38,7 @@
                 :clearable="true"
                 label="E-email"
                 placeholder="Digite seu email"
+                data-testid="email-input"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -49,6 +51,7 @@
                 :clearable="true"
                 label="Senha"
                 placeholder="Digite sua senha"
+                data-testid="password-input"
               ></v-text-field>
             </v-col>
           </v-row>

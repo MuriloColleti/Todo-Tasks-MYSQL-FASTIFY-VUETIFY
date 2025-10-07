@@ -6,7 +6,7 @@
       </v-col>
 
       <v-col cols="12" sm="2" md="2">
-        <v-btn color="primary" @click="showDialog()">Nova Tarefa</v-btn>
+        <v-btn color="primary" @click="showDialog()" data-testid="new-task-btn">Nova Tarefa</v-btn>
       </v-col>
     </v-row>
 

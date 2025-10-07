@@ -18,6 +18,7 @@
               <v-text-field
                 v-model="user.email"
                 type="email"
+                data-testid="email-input"
                 :clearable="true"
                 label="E-email"
                 placeholder="Digite seu email"
@@ -30,6 +31,7 @@
               <v-text-field
                 v-model="user.password"
                 type="password"
+                data-testid="password-input"
                 :clearable="true"
                 label="Senha"
                 placeholder="Digite sua senha"

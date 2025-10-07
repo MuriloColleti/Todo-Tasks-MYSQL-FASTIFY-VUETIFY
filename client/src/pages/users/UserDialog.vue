@@ -2,11 +2,11 @@
   <v-dialog v-model="showDialog" width="50%">
     <v-card prepend-icon="mdi-update" :title="dialogTitle">
       <v-card-text>
-        <v-text-field label="Username" v-model="model.username" />
+        <v-text-field label="Username" v-model="model.username" data-testid="username-input" />
 
-        <v-text-field label="Email" v-model="model.email" />
+        <v-text-field label="Email" v-model="model.email" data-testid="email-input" />
 
-        <v-text-field label="Senha" v-model="model.password" />
+        <v-text-field label="Senha" v-model="model.password" data-testid="password-input" />
       </v-card-text>
       <template v-slot:actions>
         <v-btn @click="close">Cancelar</v-btn>

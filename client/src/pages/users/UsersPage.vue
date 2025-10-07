@@ -4,7 +4,7 @@
       <v-row justify="space-between" align="baseline">
         <h1 class="mb-4">Usuarios</h1>
         <section>
-          <v-btn variant="tonal" @click="showDialog">Novo Usuario</v-btn>
+          <v-btn variant="tonal" @click="showDialog" data-testid="new-user-btn">Novo Usuario</v-btn>
         </section>
       </v-row>
     </section>
@@ -18,11 +18,16 @@
         fixed-header
       >
         <template v-slot:[`item.actions`]="{ item }">
-          <v-btn icon size="small" @click.stop="showDialog(item)">
+          <v-btn icon size="small" @click.stop="showDialog(item)" data-testid="edit-user-btn">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
 
-          <v-btn icon size="small" @click.stop="deleteUser(item.id_user)">
+          <v-btn
+            icon
+            size="small"
+            @click.stop="deleteUser(item.id_user)"
+            data-testid="delete-user-btn"
+          >
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </template>

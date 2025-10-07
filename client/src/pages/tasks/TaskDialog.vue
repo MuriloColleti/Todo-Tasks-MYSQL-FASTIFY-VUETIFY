@@ -4,13 +4,13 @@
       <v-card-text>
         <v-row>
           <v-col cols="12">
-            <v-text-field label="Titulo" v-model="model.title" />
+            <v-text-field label="Titulo" v-model="model.title" data-testid="title-input" />
           </v-col>
         </v-row>
 
         <v-row>
           <v-col cols="12">
-            <v-text-field label="Descrição" v-model="model.body" />
+            <v-text-field label="Descrição" v-model="model.body" data-testid="body-input" />
           </v-col>
         </v-row>
 
@@ -25,6 +25,7 @@
               :return-object="false"
               multiple
               outlined
+              data-testid="user-select"
             />
           </v-col>
         </v-row>
@@ -38,6 +39,7 @@
               label="Selecionar Prioridade"
               :return-object="false"
               outlined
+              data-testid="prioridade-select"
             />
           </v-col>
         </v-row>
@@ -52,13 +54,14 @@
               label="Selecione o Status"
               :return-object="false"
               outlined
+              data-testid="status-select"
             />
           </v-col>
         </v-row>
       </v-card-text>
       <template v-slot:actions>
-        <v-btn @click="close">Cancelar</v-btn>
-        <v-btn @click="submit">Salvar</v-btn>
+        <v-btn @click="close" data-testid="cancel-task-btn">Cancelar</v-btn>
+        <v-btn @click="submit" data-testid="save-task-btn">Salvar</v-btn>
       </template>
     </v-card>
   </v-dialog>

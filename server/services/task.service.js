@@ -40,7 +40,7 @@ export const taskService = {
       id_priority: data.id_priority ?? ID_PRIORITY_LOW,
     });
 
-    if (data.id_users) await this.handleTaskUsers(id, data.id_users);
+    if (data.id_users) await this.handleTaskUsers(id_task, data.id_users);
 
     const task = await tasksQueries.getByID(id_task);
 
